@@ -54,6 +54,25 @@ body{
     padding-left: 10px;
 }
 
+.help{
+    animation-name: help-anim;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes help-anim{
+    0%{
+        opacity: 10%;
+    }
+    50%{
+        opacity: 100%;
+    }
+    100%{
+        opacity: 10%;
+    }
+}
+
+
 .header{
     display: inline-block;
     margin-bottom: 24px;
