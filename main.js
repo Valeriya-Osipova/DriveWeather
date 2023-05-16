@@ -12,6 +12,7 @@ const weatherCard = document.querySelector('.weather-card')
 const weatherBlock = document.querySelector('.weather-block')
 
 const count = adviceData.conditions.length
+const help = document.querySelector('.help')
 
 const dom = {
     sections:{
@@ -29,7 +30,6 @@ const dom = {
     }
 }
 
-console.log(adviceData.conditions[0].condition)
 
 document.addEventListener( 'keyup', event => {
     const city = input.value
@@ -41,6 +41,7 @@ document.addEventListener( 'keyup', event => {
             console.log(data)
             renderWeather(data)
             adviceRender(data)
+            help.classList.add('desable')
         });
     };
 });
@@ -54,6 +55,7 @@ button.onclick = () => {
         console.log(data)
         renderWeather(data)
         adviceRender(data)
+        help.classList.add('desable')
     });
 
 }
@@ -78,6 +80,7 @@ function renderWeather(data){
 
 
 function adviceRender (data){
+    dom.advices.advice.innerHTML = ''
     for (let i = 0; i<count; i++){
         if (data.current.condition.text === adviceData.conditions[i].condition){
             dom.advices.advice.innerHTML = adviceData.conditions[i].advice
