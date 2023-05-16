@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="section">
+        <div class="drive-weather">
+            <p class="project-name">DriveWeather</p>
+        </div>
+        <div class="search-field">
+            <input type="text" id="input" class="input">
+            <button class="search-button" id="button">Search</button>
+        </div>
+        
+        <div class="weather-block">
+            <div class="header">
+                <span class="header-text" id="country">Russia</span>
+                <span class="header-text">,</span>
+                <span class="header-text" id="city">Moscow</span>
+            </div>
+            <div class="cards ">
+                <div class="weather-card card">
+                    <div class="two-parts">
+                        <div class="header-temp-cond">
+                            <p class="card-header-text" id="current-text">Current</p>
+                            <div class="temp">
+                                <span class="temp-text" id="temperature">1</span>
+                                <span class="temp-text">&degC</span>
+                            </div>
+                            <div class="condition-main">
+                                <p class="condition-text" id="condition">Sunny</p>
+                            </div>
+                        </div>
+                        <div class="img">
+                            <img id="image" class="current-image" src="https://cdn.weatherapi.com/weather/64x64/day/113.png" alt="">
+                        </div>
+                    </div>
+                    <div class="parameters">
+                        <div class="name-of-param">
+                            <p>Feels like:</p>
+                            <p>Visibility:</p>
+                            <p>Gust:</p>
+                        </div>
+                        <div class="value-of-param">
+                            <p id="feels-like">1</p>
+                            <p id="visibility">1</p>
+                            <p id="gust">1</p>
+                        </div>
+                        <div class="mesure-of-param">
+                            <p>&degC</p>
+                            <p>km</p>
+                            <p>kmh</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="driver-card card">
+                    <p class="card-header-text" id="current-text">Driver advices</p>
+                    <p id="advice">No advices, sorry</p>
+                </div>
+            </div>
+        </div>
+</body>
+<script src="data.js"></script>
+<script src="main.js"></script>
+
+</html>
