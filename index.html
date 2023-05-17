@@ -17,50 +17,58 @@
             <button class="search-button" id="button">Search</button>
         </div>
         <div class="help">&#8593 Enter the name of the city &#8593</div>
-        <div class="weather-block desable">
+        <div class="weather-block desable"> 
             <div class="header">
                 <span class="header-text" id="country">Russia</span>
                 <span class="header-text">,</span>
                 <span class="header-text" id="city">Moscow</span>
             </div>
-            <div class="cards ">
-                <div class="weather-card card">
-                    <div class="two-parts">
-                        <div class="header-temp-cond">
-                            <p class="card-header-text" id="current-text">Current</p>
-                            <div class="temp">
-                                <span class="temp-text" id="temperature">1</span>
-                                <span class="temp-text">&degC</span>
+            <div class="weather-section">
+                <div class="prev-day desable" data>
+                    <p>&#8249</p>
+                </div>
+                <div class="cards ">
+                    <div class="weather-card card">
+                        <div class="two-parts">
+                            <div class="header-temp-cond">
+                                <p class="card-header-text" id="current-text">Current</p>
+                                <div class="temp">
+                                    <span class="temp-text" id="temperature">1</span>
+                                    <span class="temp-text">&degC</span>
+                                </div>
+                                <div class="condition-main">
+                                    <p class="condition-text" id="condition">Sunny</p>
+                                </div>
                             </div>
-                            <div class="condition-main">
-                                <p class="condition-text" id="condition">Sunny</p>
+                            <div class="img">
+                                <img id="image" class="current-image" src="https://cdn.weatherapi.com/weather/64x64/day/113.png" alt="">
                             </div>
                         </div>
-                        <div class="img">
-                            <img id="image" class="current-image" src="https://cdn.weatherapi.com/weather/64x64/day/113.png" alt="">
+                        <div class="parameters">
+                            <div class="name-of-param">
+                                <p class="text-feels-like">Feels like:</p>
+                                <p>Visibility:</p>
+                                <p>Gust:</p>
+                            </div>
+                            <div class="value-of-param">
+                                <p id="feels-like">1</p>
+                                <p id="visibility">1</p>
+                                <p id="gust">1</p>
+                            </div>
+                            <div class="mesure-of-param">
+                                <p class="mesure-feels-like">&degC</p>
+                                <p>km</p>
+                                <p>kmh</p>
+                            </div>
                         </div>
                     </div>
-                    <div class="parameters">
-                        <div class="name-of-param">
-                            <p>Feels like:</p>
-                            <p>Visibility:</p>
-                            <p>Gust:</p>
-                        </div>
-                        <div class="value-of-param">
-                            <p id="feels-like">1</p>
-                            <p id="visibility">1</p>
-                            <p id="gust">1</p>
-                        </div>
-                        <div class="mesure-of-param">
-                            <p>&degC</p>
-                            <p>km</p>
-                            <p>kmh</p>
-                        </div>
+                    <div class="driver-card card">
+                        <p class="card-header-text" id="current-text">Driver advices</p>
+                        <p id="advice">No advices, sorry</p>
                     </div>
                 </div>
-                <div class="driver-card card">
-                    <p class="card-header-text" id="current-text">Driver advices</p>
-                    <p id="advice">No advices, sorry</p>
+                <div class="next-day" data>
+                    <p>&#8250</p>
                 </div>
             </div>
         </div>

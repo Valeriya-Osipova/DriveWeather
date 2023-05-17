@@ -13,6 +13,11 @@ const weatherBlock = document.querySelector('.weather-block')
 
 const count = adviceData.conditions.length
 const help = document.querySelector('.help')
+const nextDay = document.querySelector('.next-day')
+const prevDay = document.querySelector('.prev-day')
+
+const cardsBlock = document.querySelector('.cards')
+const typeOfDay = document.querySelector('#current-text')
 
 const dom = {
     sections:{
@@ -42,6 +47,19 @@ document.addEventListener( 'keyup', event => {
             renderWeather(data)
             adviceRender(data)
             help.classList.add('desable')
+
+            nextDay.onclick =() =>{
+                renderNextDay(data)
+                adviceNextRender(data)
+            }
+
+            prevDay.onclick = () =>{
+                renderWeather(data)
+                cardsBlock.style.margin = "0px 36px 0px 76px";
+                nextDay.classList.remove('desable')
+                prevDay.classList.add('desable')
+                adviceRender(data)
+            }
         });
     };
 });
@@ -56,16 +74,32 @@ button.onclick = () => {
         renderWeather(data)
         adviceRender(data)
         help.classList.add('desable')
+
+        nextDay.onclick =() =>{
+            renderNextDay(data)
+            adviceNextRender(data)
+        }
+
+        prevDay.onclick = () =>{
+            renderWeather(data)
+            cardsBlock.style.margin = "0px 36px 0px 76px";
+            nextDay.classList.remove('desable')
+            prevDay.classList.add('desable')
+            adviceRender(data)
+        }
     });
 
 }
 
 function renderWeather(data){
     weatherBlock.classList.remove('desable')
+    typeOfDay.innerText = 'Current'
     dom.sections.country.innerHTML = data.location.country
     dom.sections.city.innerHTML = data.location.name
-    dom.sections.temperature.innerHTML = data.current.temp_c
-    dom.sections.feelsLike.innerHTML = data.current.feelslike_c
+    dom.sections.temperature.innerHTML = Math.round(data.current.temp_c)
+    dom.sections.feelsLike.innerHTML = Math.round(data.current.feelslike_c)
+    document.querySelector('.text-feels-like').innerHTML = 'Feels like:'
+    document.querySelector('.mesure-feels-like').innerHTML = '&degC'
     dom.sections.visibility.innerHTML = data.current.vis_km         //видимостьs           //ветер 
     dom.sections.gust.innerHTML = data.current.gust_kph                  //порыв ветра
     dom.sections.condition.innerHTML = data.current.condition.text
@@ -73,6 +107,23 @@ function renderWeather(data){
     // serchField.insertAdjacentHTML('afterend', html);					
 
 }
+
+function renderNextDay(data){
+    nextDay.classList.add('desable')
+    prevDay.classList.remove('desable')
+    typeOfDay.innerText = 'Tomorrow'
+    dom.sections.temperature.innerHTML = Math.round(data.forecast.forecastday[1].day.avgtemp_c)
+    document.querySelector('.text-feels-like').innerHTML = 'Chance of rain:'
+    document.querySelector('.mesure-feels-like').innerHTML = '%'
+    dom.sections.feelsLike.innerHTML = data.forecast.forecastday[1].day.daily_chance_of_rain
+    dom.sections.visibility.innerHTML = data.forecast.forecastday[1].day.avgvis_km    
+    dom.sections.gust.innerHTML = data.forecast.forecastday[1].day.maxwind_kph              
+    dom.sections.condition.innerHTML = data.forecast.forecastday[1].day.condition.text
+    dom.sections.image.src = `https:` + data.forecast.forecastday[1].day.condition.icon
+
+    cardsBlock.style.margin = "0px 76px 0px 36px";
+}
+
 
 // weatherCard.addEventListener('click', function(e){
 //     description.classList.toggle('desable')
@@ -86,10 +137,11 @@ function adviceRender (data){
             dom.advices.advice.innerHTML = adviceData.conditions[i].advice
         }
     }
+
     if (data.current.vis_km < 10){
         dom.advices.advice.innerHTML += `<p class="dangerous">Visibility is poor on the roads.</p>`
     }
-    if (data.current.gust_kph > 30){
+    if (data.current.gust_kph >= 30){
         dom.advices.advice.innerHTML += `<p class="dangerous">The wind is dangerous, try not to drive fast on an open surface.</p>`
     }
     if (data.current.temp_c < 0){
@@ -97,6 +149,27 @@ function adviceRender (data){
     }
     if (data.current.temp_c > 30){
         dom.advices.advice.innerHTML += `<p class="dangerous">It's very hot, leave the car in the shade.</p>`
+    }
+}
+
+function adviceNextRender (data){
+    dom.advices.advice.innerHTML = ''
+    for (let i = 0; i<count; i++){
+        if (data.forecast.forecastday[1].day.condition.text === adviceData.conditions[i].condition){
+            dom.advices.advice.innerHTML = adviceData.conditions[i].advice
+        }
+    }
+    if (data.forecast.forecastday[1].day.avgvis_km < 10){
+        dom.advices.advice.innerHTML += `<p class="dangerous">Visibility will be poor on the roads.</p>`
+    }
+    if (data.forecast.forecastday[1].day.maxwind_kph >= 30){
+        dom.advices.advice.innerHTML += `<p class="dangerous">The wind will be dangerous, try not to drive fast on an open surface.</p>`
+    }
+    if (data.forecast.forecastday[1].day.avgtemp_c < 0){
+        dom.advices.advice.innerHTML += `<p class="dangerous">The roads can be slippery.</p>`
+    }
+    if (data.forecast.forecastday[1].day.avgtemp_c > 30){
+        dom.advices.advice.innerHTML += `<p class="dangerous">It will be very hot, leave the car in the shade.</p>`
     }
     console.log(data.current.vis_km)
 }
