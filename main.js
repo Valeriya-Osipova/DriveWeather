@@ -93,6 +93,9 @@ button.onclick = () => {
 
 function renderWeather(data){
     weatherBlock.classList.remove('desable')
+    nextDay.classList.remove('desable')
+    prevDay.classList.add('desable')
+    
     typeOfDay.innerText = 'Current'
     dom.sections.country.innerHTML = data.location.country
     dom.sections.city.innerHTML = data.location.name
@@ -104,6 +107,8 @@ function renderWeather(data){
     dom.sections.gust.innerHTML = data.current.gust_kph                  //порыв ветра
     dom.sections.condition.innerHTML = data.current.condition.text
     dom.sections.image.src = `https:` + data.current.condition.icon
+
+    cardsBlock.style.margin = "0px 36px 0px 76px";
     // serchField.insertAdjacentHTML('afterend', html);					
 
 }
